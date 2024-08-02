@@ -1,6 +1,7 @@
 package pages;
 
 import constans.IConstans;
+import jdk.jfr.Description;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -17,26 +18,30 @@ public class CartPage extends HeaderPage implements IConstans {
         super(driver);
     }
 
+    @Description("открытие страницы")
     public CartPage openPage() {
         driver.get(CART_PAGE_URL);
         return this;
     }
 
-    public void removeProductFromCart(String productName){
-        driver.findElement(By.xpath(String.format(PRODUCT_REMOVE,productName))).click();
+    @Description("удаление товара из корзины")
+    public void removeProductFromCart(String productName) {
+        driver.findElement(By.xpath(String.format(PRODUCT_REMOVE, productName))).click();
     }
 
+    @Description("получение цены товара")
     public String getProductPrice(String productName) {
         return driver.findElement(By.xpath(String.format(PRODUCT_PRICE, productName))).getText();
     }
 
-
-    public int getProductsCount(){
+    @Description("проверка количества товара")
+    public int getProductsCount() {
         return driver.findElements(By.xpath(PRODUCT_CONTAINER)).size();
     }
 
-    public boolean isProductDisplayed(String productName){
-        return !driver.findElements(By.xpath(String.format(PRODUCT_ITEM,productName))).isEmpty();
+    @Description("проверка имеется ли товар")
+    public boolean isProductDisplayed(String productName) {
+        return !driver.findElements(By.xpath(String.format(PRODUCT_ITEM, productName))).isEmpty();
 
     }
 

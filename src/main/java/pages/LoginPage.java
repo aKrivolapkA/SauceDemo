@@ -2,6 +2,7 @@ package pages;
 
 import com.google.common.annotations.VisibleForTesting;
 import constans.IConstans;
+import jdk.jfr.Description;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -19,15 +20,15 @@ public class LoginPage extends BasePage implements IConstans {
     //public static final By LOGIN_BUTTON = By.xpath("//*[@id='login-button']");
     //public static final By ERROR_MESSAGE = By.xpath("//*[@data-test='error']");
 
-    @FindBy(xpath ="//*[@id='user-name']" )
+    @FindBy(xpath = "//*[@id='user-name']")
     WebElement usernameInput;
-    @FindBy(xpath ="//*[@id='password']" )
+    @FindBy(xpath = "//*[@id='password']")
     WebElement passwordInput;
 
-    @FindBy(xpath ="//*[@id='login-button']" )
+    @FindBy(xpath = "//*[@id='login-button']")
     WebElement loginButton;
 
-    @FindBy(xpath ="//*[@data-test='error']" )
+    @FindBy(xpath = "//*[@data-test='error']")
     WebElement errorMessage;
 
 
@@ -35,38 +36,30 @@ public class LoginPage extends BasePage implements IConstans {
         super(driver);
     }
 
-    public LoginPage  openPage() {
+    @Description("открытие страницы")
+    public LoginPage openPage() {
         driver.get(LOGIN_PAGE_URL);
         return this;
     }
-    public ProductsPage login(String username,String password){
+
+    @Description("вход  с помощью  логина и пароля")
+    public ProductsPage login(String username, String password) {
         usernameInput.sendKeys(username);
         passwordInput.sendKeys(password);
         loginButton.click();
         return new ProductsPage(driver);
     }
 
-    public String getErrorMessageText(){
+    @Description("получение ошибки")
+    public String getErrorMessageText() {
         return errorMessage.getText();
     }
 
-    public LoginPage waitForPageOpened(){
-        WebDriverWait wait =  new WebDriverWait(driver, Duration.ofSeconds(15));
+    @Description("ожидание что страница будет открыта")
+    public LoginPage waitForPageOpened() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         wait.until(ExpectedConditions.visibilityOf(loginButton));
         return this;
     }
-
-
- //   пример где раз на 2 секунды ьудет проверять чтоб появился элемент
-  // public void waitForPageOpenedWithFluent(){
-  //     Wait<WebDriver> fluent = new FluentWait<>(driver)
-  //             .withTimeout(Duration.ofSeconds(30))
-  //             .pollingEvery(Duration.ofSeconds(2))
-  //             .ignoring(NoSuchElementException.class);
-  //     fluent.until(ExpectedConditions.visibilityOfElementLocated(driver.findElement(LOGIN_BUTTON)));
-  //
-  // }
-
-
 
 }
