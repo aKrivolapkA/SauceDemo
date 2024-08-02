@@ -11,6 +11,7 @@ public class LoginTests extends BaseTest implements ITestConstants {
 
     private static final String EMPTY_PASSWORD_ERROR_TEXT = "Epic sadface: Password is required";
     private static final String EMPTY_USER_NAME_ERROR_TEXT = "Epic sadface: Username is required";
+    private static final String EMPTY_USER_NAME_ERROR_TEXT_ERROR = "Epic sadface:  is required";
     private static final String INCORRECT_DATA_ERROR_TEXT = "Epic sadface: Username and password do not match any user in this service";
 
     @Test
@@ -19,6 +20,13 @@ public class LoginTests extends BaseTest implements ITestConstants {
                 .openPage()
                 .login("", "");
         Assert.assertEquals(loginPage.getErrorMessageText(), EMPTY_USER_NAME_ERROR_TEXT);
+    }
+    @Test(retryAnalyzer = Retry.class)
+    public void loginWithEmptyFieldsTestWithRetry() {
+        loginPage
+                .openPage()
+                .login("", "");
+        Assert.assertEquals(loginPage.getErrorMessageText(), EMPTY_USER_NAME_ERROR_TEXT_ERROR);
     }
 
     @Test

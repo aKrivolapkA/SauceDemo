@@ -1,12 +1,25 @@
 package tests;
 
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static tests.ITestConstants.*;
 
 public class CartTests extends BaseTest {
 
+
+    @DataProvider(name= "products")//хранилище данных - должно быть название и данные которые хранятся
+    public Object[] products(){
+        return new Object[]{
+                SAUCE_LABS_BACKPACK,
+                SAUCE_LABS_BIKE_LIGHT,
+                SAUCE_LABS_BOLT_T_SHIRT,
+                SAUCE_LABS_FLEECE_JACKET,
+                SAUCE_LABS_ONESIE,
+                T_SHIRT_R5ED
+        };
+    }
 
     //добавить товар в корзину и проверить что у него отображается верная цена
     @Test
@@ -30,16 +43,15 @@ public class CartTests extends BaseTest {
         Assert.assertEquals(cartPage.getProductsCount(), 2);
     }
 
-    @Test
-    public void removeOneProductFromCartTest() {
+    @Test(dataProvider = "products")
+    public void removeOneProductFromCartTest(String productName) {
         loginPage
                 .openPage()
                 .login(USERNAME, PASSWORD)
-                .addProductToCart(SAUCE_LABS_BACKPACK)
-                .addProductToCart(SAUCE_LABS_FLEECE_JACKET);
+                .addProductToCart(productName);
         cartPage.openPage()
-                .removeProductFromCart(SAUCE_LABS_BACKPACK);
-        Assert.assertFalse(cartPage.isProductDisplayed(SAUCE_LABS_BACKPACK));
+                .removeProductFromCart(productName);
+        Assert.assertFalse(cartPage.isProductDisplayed(productName));
     }
 
     // удалить товар из корзины и проверить что он удалился

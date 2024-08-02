@@ -3,7 +3,7 @@ package tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class ProductsTest extends BaseTest implements ITestConstants {
+public class ProductsTests extends BaseTest implements ITestConstants {
     @Test
     public void isAddToCartButtonDisplayedTest() {
         loginPage
