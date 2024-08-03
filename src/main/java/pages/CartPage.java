@@ -93,7 +93,7 @@ public class CartPage extends HeaderPage implements IConstans {
      *
      * @return the checkout page
      */
-    public CheckoutPage openCheckoutPage() {
+    public CheckoutPage proceedToCheckoutPage() {
         checkoutButton.click();
         return new CheckoutPage(driver);
 

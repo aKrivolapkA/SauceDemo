@@ -23,7 +23,7 @@ public class CheckoutTests extends BaseTest {
         Assert.assertTrue(productsPage.isRemoveButtonDisplayed(SAUCE_LABS_BACKPACK));
         productsPage.proceedToCartPage();
         cartPage
-                .openCheckoutPage()
+                .proceedToCheckoutPage()
                 .inputCheckoutInformation("aaa", "ddd", "1234");
         Assert.assertTrue(driver.findElement(By.xpath("//*[@id= 'finish']")).isDisplayed());
     }
@@ -40,7 +40,7 @@ public class CheckoutTests extends BaseTest {
         Assert.assertTrue(productsPage.isRemoveButtonDisplayed(SAUCE_LABS_BACKPACK));
         productsPage.proceedToCartPage();
         cartPage
-                .openCheckoutPage()
+                .proceedToCheckoutPage()
                 .inputCheckoutInformation("", "ddd", "1234");
         Assert.assertEquals(checkoutPage.getErrorMessageText(), "Error: First Name is required");
     }
@@ -57,7 +57,7 @@ public class CheckoutTests extends BaseTest {
         Assert.assertTrue(productsPage.isRemoveButtonDisplayed(SAUCE_LABS_BACKPACK));
         productsPage.proceedToCartPage();
         cartPage
-                .openCheckoutPage()
+                .proceedToCheckoutPage()
                 .inputCheckoutInformation("test", "", "1234");
         Assert.assertEquals(checkoutPage.getErrorMessageText(), "Error: Last Name is required");
     }
@@ -74,7 +74,7 @@ public class CheckoutTests extends BaseTest {
         Assert.assertTrue(productsPage.isRemoveButtonDisplayed(SAUCE_LABS_BACKPACK));
         productsPage.proceedToCartPage();
         cartPage
-                .openCheckoutPage()
+                .proceedToCheckoutPage()
                 .inputCheckoutInformation("test", "test", "");
         Assert.assertEquals(checkoutPage.getErrorMessageText(), "Error: Postal Code is required");
     }
@@ -91,7 +91,7 @@ public class CheckoutTests extends BaseTest {
         Assert.assertTrue(productsPage.isRemoveButtonDisplayed(SAUCE_LABS_BACKPACK));
         productsPage.proceedToCartPage();
         cartPage
-                .openCheckoutPage()
+                .proceedToCheckoutPage()
                 .inputCheckoutInformation(" ", "ddd", "1234");
         Assert.assertTrue(driver.findElement(By.xpath("//*[@id= 'finish']")).isDisplayed());
     }
