@@ -44,8 +44,9 @@ public class CartPage extends HeaderPage implements IConstans {
     }
 
     @Description("переход на страницу Checkout page")
-    public void openCheckoutPage() {
+    public CheckoutPage openCheckoutPage() {
         driver.findElement(By.xpath(CHECKOUT_BUTTON)).click();
+        return new CheckoutPage(driver);
 
     }
 

@@ -36,8 +36,9 @@ public class ProductsPage extends HeaderPage {
     }
 
     @Description("переход на страницу Cart page")
-    public void openCartPage() {
+    public CartPage openCartPage() {
         driver.findElement(By.xpath(CART_BUTTON)).click();
+        return new CartPage(driver);
 
     }
 }
