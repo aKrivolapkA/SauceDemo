@@ -21,9 +21,10 @@ public class CheckoutTests extends BaseTest {
                 .login(USERNAME, PASSWORD)
                 .addProductToCart(SAUCE_LABS_BACKPACK);
         Assert.assertTrue(productsPage.isRemoveButtonDisplayed(SAUCE_LABS_BACKPACK));
-        productsPage.openCartPage();
-        cartPage.openCheckoutPage();
-        checkoutPage.inputCheckoutInformation("aaa", "ddd", "1234");
+        productsPage.proceedToCartPage();
+        cartPage
+                .openCheckoutPage()
+                .inputCheckoutInformation("aaa", "ddd", "1234");
         Assert.assertTrue(driver.findElement(By.xpath("//*[@id= 'finish']")).isDisplayed());
     }
 
@@ -31,15 +32,16 @@ public class CheckoutTests extends BaseTest {
      * Filling fields without first name on the checkout page test.
      */
     @Test
-    public void fillingFieldsWithoutFirstNameOnTheCheckoutPageTest() {
+    public void fillingFieldsWithoutFirstName() {
         loginPage
                 .openPage()
                 .login(USERNAME, PASSWORD)
                 .addProductToCart(SAUCE_LABS_BACKPACK);
         Assert.assertTrue(productsPage.isRemoveButtonDisplayed(SAUCE_LABS_BACKPACK));
-        productsPage.openCartPage();
-        cartPage.openCheckoutPage();
-        checkoutPage.inputCheckoutInformation("", "ddd", "1234");
+        productsPage.proceedToCartPage();
+        cartPage
+                .openCheckoutPage()
+                .inputCheckoutInformation("", "ddd", "1234");
         Assert.assertEquals(checkoutPage.getErrorMessageText(), "Error: First Name is required");
     }
 
@@ -47,15 +49,16 @@ public class CheckoutTests extends BaseTest {
      * Filling fields without last name on the checkout page test.
      */
     @Test
-    public void fillingFieldsWithoutLastNameOnTheCheckoutPageTest() {
+    public void fillingFieldsWithoutLastName() {
         loginPage
                 .openPage()
                 .login(USERNAME, PASSWORD)
                 .addProductToCart(SAUCE_LABS_BACKPACK);
         Assert.assertTrue(productsPage.isRemoveButtonDisplayed(SAUCE_LABS_BACKPACK));
-        productsPage.openCartPage();
-        cartPage.openCheckoutPage();
-        checkoutPage.inputCheckoutInformation("test", "", "1234");
+        productsPage.proceedToCartPage();
+        cartPage
+                .openCheckoutPage()
+                .inputCheckoutInformation("test", "", "1234");
         Assert.assertEquals(checkoutPage.getErrorMessageText(), "Error: Last Name is required");
     }
 
@@ -63,15 +66,16 @@ public class CheckoutTests extends BaseTest {
      * Filling fields without zip code on the checkout page test.
      */
     @Test
-    public void fillingFieldsWithoutZipCodeOnTheCheckoutPageTest() {
+    public void fillingFieldsWithoutZipCode() {
         loginPage
                 .openPage()
                 .login(USERNAME, PASSWORD)
                 .addProductToCart(SAUCE_LABS_BACKPACK);
         Assert.assertTrue(productsPage.isRemoveButtonDisplayed(SAUCE_LABS_BACKPACK));
-        productsPage.openCartPage();
-        cartPage.openCheckoutPage();
-        checkoutPage.inputCheckoutInformation("test", "test", "");
+        productsPage.proceedToCartPage();
+        cartPage
+                .openCheckoutPage()
+                .inputCheckoutInformation("test", "test", "");
         Assert.assertEquals(checkoutPage.getErrorMessageText(), "Error: Postal Code is required");
     }
 
@@ -79,15 +83,16 @@ public class CheckoutTests extends BaseTest {
      * Filling all fields where firstname with space on the checkout page test.
      */
     @Test
-    public void fillingAllFieldsWhereFirstnameWithSpaceOnTheCheckoutPageTest() {
+    public void fillingAllFieldsWhereFirstnameSpace() {
         loginPage
                 .openPage()
                 .login(USERNAME, PASSWORD)
                 .addProductToCart(SAUCE_LABS_BACKPACK);
         Assert.assertTrue(productsPage.isRemoveButtonDisplayed(SAUCE_LABS_BACKPACK));
-        productsPage.openCartPage();
-        cartPage.openCheckoutPage();
-        checkoutPage.inputCheckoutInformation(" ", "ddd", "1234");
+        productsPage.proceedToCartPage();
+        cartPage
+                .openCheckoutPage()
+                .inputCheckoutInformation(" ", "ddd", "1234");
         Assert.assertTrue(driver.findElement(By.xpath("//*[@id= 'finish']")).isDisplayed());
     }
 }

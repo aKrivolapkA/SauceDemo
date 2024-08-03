@@ -20,30 +20,13 @@ import java.util.concurrent.TimeUnit;
 // анатоция чтобы в терменале было видно/ можно писать свое и менять/ нужно заимпортиовать ITestListener
 
 public class BaseTest {
-    /**
-     * The Driver.
-     */
     WebDriver driver;
-    /**
-     * The Login page.
-     */
     LoginPage loginPage;
-    /**
-     * The Products page.
-     */
     ProductsPage productsPage;
-    /**
-     * The Cart page.
-     */
     CartPage cartPage;
-    /**
-     * The Checkout page.
-     */
     CheckoutPage checkoutPage;
-    /**
-     * The Checkout overview page.
-     */
     CheckoutOverviewPage checkoutOverviewPage;
+    HeaderPage headerPage;
 
     /**
      * Init test.
@@ -69,6 +52,8 @@ public class BaseTest {
         cartPage = new CartPage(driver);
         checkoutPage = new CheckoutPage(driver);
         checkoutOverviewPage = new CheckoutOverviewPage(driver);
+        headerPage = new HeaderPage(driver);
+
 
     }
 

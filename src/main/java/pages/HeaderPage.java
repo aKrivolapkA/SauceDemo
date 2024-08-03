@@ -11,7 +11,7 @@ public class HeaderPage extends BasePage {
      *
      * @param driver the driver
      */
-    HeaderPage(WebDriver driver) {
+    public HeaderPage(WebDriver driver) {
         super(driver);
     }
 }
