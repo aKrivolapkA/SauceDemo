@@ -7,6 +7,9 @@ import org.testng.ITestResult;
 import java.util.concurrent.TimeUnit;
 
 
+/**
+ * The type Test listener.
+ */
 public class TestListener implements ITestListener {
 
     @Override

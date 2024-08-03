@@ -6,11 +6,19 @@ import org.testng.annotations.Test;
 
 import static tests.ITestConstants.*;
 
+/**
+ * The type Cart tests.
+ */
 public class CartTests extends BaseTest {
 
 
-    @DataProvider(name= "products")//хранилище данных - должно быть название и данные которые хранятся
-    public Object[] products(){
+    /**
+     * Products object [ ].
+     *
+     * @return the object [ ]
+     */
+    @DataProvider(name = "products")//хранилище данных - должно быть название и данные которые хранятся
+    public Object[] products() {
         return new Object[]{
                 SAUCE_LABS_BACKPACK,
                 SAUCE_LABS_BIKE_LIGHT,
@@ -21,7 +29,10 @@ public class CartTests extends BaseTest {
         };
     }
 
-    //добавить товар в корзину и проверить что у него отображается верная цена
+    /**
+     * Add product to cart test.
+     */
+//добавить товар в корзину и проверить что у него отображается верная цена
     @Test
     public void addProductToCartTest() {
         loginPage.openPage()
@@ -31,7 +42,10 @@ public class CartTests extends BaseTest {
         Assert.assertEquals(cartPage.getProductPrice(SAUCE_LABS_BACKPACK), "$29.99");
     }
 
-    //добавить 2 товара в корзину и проверить что количество добавленных товаров равно 2
+    /**
+     * Add two products to cart and check count test.
+     */
+//добавить 2 товара в корзину и проверить что количество добавленных товаров равно 2
     @Test
     public void addTwoProductsToCartAndCheckCountTest() {
         loginPage
@@ -43,6 +57,11 @@ public class CartTests extends BaseTest {
         Assert.assertEquals(cartPage.getProductsCount(), 2);
     }
 
+    /**
+     * Remove one product from cart test.
+     *
+     * @param productName the product name
+     */
     @Test(dataProvider = "products")
     public void removeOneProductFromCartTest(String productName) {
         loginPage
@@ -54,7 +73,10 @@ public class CartTests extends BaseTest {
         Assert.assertFalse(cartPage.isProductDisplayed(productName));
     }
 
-    // удалить товар из корзины и проверить что он удалился
+    /**
+     * Remove product from cart and check count test.
+     */
+// удалить товар из корзины и проверить что он удалился
     @Test
     public void removeProductFromCartAndCheckCountTest() {
         loginPage

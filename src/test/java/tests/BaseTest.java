@@ -9,19 +9,24 @@ import org.testng.ITestListener;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
-import pages.CartPage;
-import pages.LoginPage;
-import pages.ProductsPage;
+import pages.*;
 
 import java.util.concurrent.TimeUnit;
 
-@Listeners(TestListener.class)// анатоция чтобы в терменале было видно/ можно писать свое и менять/ нужно заимпортиовать ITestListener
+/**
+ * The type Base test.
+ */
+@Listeners(TestListener.class)
+// анатоция чтобы в терменале было видно/ можно писать свое и менять/ нужно заимпортиовать ITestListener
 
 public class BaseTest {
     WebDriver driver;
     LoginPage loginPage;
     ProductsPage productsPage;
     CartPage cartPage;
+    CheckoutPage checkoutPage;
+    CheckoutOverviewPage checkoutOverviewPage;
+    HeaderPage headerPage;
 
     /**
      * Init test.
@@ -35,16 +40,21 @@ public class BaseTest {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         initPages();
-        PageFactory.initElements(driver,this);
+        PageFactory.initElements(driver, this);
     }
 
     /**
      * Init pages.
      */
-    public void initPages(){ //проинициализировали все странички ятобы не создавать экземляры класса каждый раз
-        loginPage =new LoginPage(driver);
-        productsPage= new ProductsPage(driver);
-        cartPage= new CartPage(driver);
+    public void initPages() { //проинициализировали все странички ятобы не создавать экземляры класса каждый раз
+        loginPage = new LoginPage(driver);
+        productsPage = new ProductsPage(driver);
+        cartPage = new CartPage(driver);
+        checkoutPage = new CheckoutPage(driver);
+        checkoutOverviewPage = new CheckoutOverviewPage(driver);
+        headerPage = new HeaderPage(driver);
+
+
     }
 
     /**

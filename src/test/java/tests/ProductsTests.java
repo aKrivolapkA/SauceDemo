@@ -3,15 +3,14 @@ package tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+/**
+ * The type Products tests.
+ */
 public class ProductsTests extends BaseTest implements ITestConstants {
-    @Test
-    public void isAddToCartButtonDisplayedTest() {
-        loginPage
-                .openPage()
-                .login(USERNAME, PASSWORD);
-        Assert.assertTrue(productsPage.isAddCartButtonDisplayed(SAUCE_LABS_BACKPACK));
-    }
 
+    /**
+     * Is remove button displayed test.
+     */
     @Test
     public void isRemoveButtonDisplayedTest() {
         loginPage

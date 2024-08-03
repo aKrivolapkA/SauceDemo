@@ -2,8 +2,16 @@ package pages;
 
 import org.openqa.selenium.WebDriver;
 
-public class HeaderPage extends BasePage{
-    HeaderPage(WebDriver driver) {
+/**
+ * The type Header page.
+ */
+public class HeaderPage extends BasePage {
+    /**
+     * Instantiates a new Header page.
+     *
+     * @param driver the driver
+     */
+    public HeaderPage(WebDriver driver) {
         super(driver);
     }
 }

@@ -3,6 +3,9 @@ package tests;
 import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;
 
+/**
+ * The type Retry.
+ */
 public class Retry implements IRetryAnalyzer {
 
     private int attempt = 1;
