@@ -9,8 +9,8 @@ import static tests.ITestConstants.*;
 public class CartTests extends BaseTest {
 
 
-    @DataProvider(name= "products")//хранилище данных - должно быть название и данные которые хранятся
-    public Object[] products(){
+    @DataProvider(name = "products")//хранилище данных - должно быть название и данные которые хранятся
+    public Object[] products() {
         return new Object[]{
                 SAUCE_LABS_BACKPACK,
                 SAUCE_LABS_BIKE_LIGHT,

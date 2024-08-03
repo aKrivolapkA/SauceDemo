@@ -15,12 +15,12 @@ import org.testng.annotations.Test;
 public class HomeworkTest {
 
     private WebDriver driver;
-    @FindBy(xpath ="//*[@id='user-name']" )
+    @FindBy(xpath = "//*[@id='user-name']")
     WebElement usernameInput;
-    @FindBy(xpath ="//*[@id='password']" )
+    @FindBy(xpath = "//*[@id='password']")
     WebElement passwordInput;
 
-    @FindBy(xpath ="//*[@id='login-button']" )
+    @FindBy(xpath = "//*[@id='login-button']")
     WebElement loginButton;
 
 
@@ -36,18 +36,18 @@ public class HomeworkTest {
     }
 
     @Test
-    public void loginSteps(){
+    public void loginSteps() {
         usernameInput.sendKeys("standard_user");
         passwordInput.sendKeys("secret_sauce");
         loginButton.click();
         String logo = driver.findElement(By.xpath("//*[@class='app_logo']")).getText();
-        Assert.assertEquals(logo,"Swag Labs");
+        Assert.assertEquals(logo, "Swag Labs");
         driver.findElement(By.xpath("//*[@id ='add-to-cart-sauce-labs-backpack']")).click();
         driver.findElement(By.xpath("//*[@id ='shopping_cart_container']")).click();
         String nameItem = driver.findElement(By.xpath("//*[@id ='item_4_title_link']")).getText();
-        Assert.assertEquals(nameItem,"Sauce Labs Backpack");
-        String priceItem= driver.findElement(By.xpath("//*[@class ='inventory_item_price']")).getText();
-        Assert.assertEquals(priceItem,"$29.99");
+        Assert.assertEquals(nameItem, "Sauce Labs Backpack");
+        String priceItem = driver.findElement(By.xpath("//*[@class ='inventory_item_price']")).getText();
+        Assert.assertEquals(priceItem, "$29.99");
         driver.quit();
     }
 }

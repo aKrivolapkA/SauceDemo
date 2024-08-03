@@ -1,6 +1,5 @@
 package pages;
 
-import com.google.common.annotations.VisibleForTesting;
 import constans.IConstans;
 import jdk.jfr.Description;
 import org.openqa.selenium.WebDriver;

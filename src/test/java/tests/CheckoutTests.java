@@ -59,6 +59,7 @@ public class CheckoutTests extends BaseTest {
         checkoutPage.inputCheckoutInformation("test", "test", "");
         Assert.assertEquals(checkoutPage.getErrorMessageText(), "Error: Postal Code is required");
     }
+
     @Test
     public void fillingAllFieldsWhereFirstnameWithSpaceOnTheCheckoutPageTest() {
         loginPage
