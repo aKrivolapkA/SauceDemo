@@ -6,8 +6,14 @@ import org.testng.annotations.Test;
 
 import static tests.ITestConstants.*;
 
+/**
+ * The type Checkout tests.
+ */
 public class CheckoutTests extends BaseTest {
 
+    /**
+     * Filling in all fields on the checkout page test.
+     */
     @Test
     public void fillingInAllFieldsOnTheCheckoutPageTest() {
         loginPage
@@ -21,6 +27,9 @@ public class CheckoutTests extends BaseTest {
         Assert.assertTrue(driver.findElement(By.xpath("//*[@id= 'finish']")).isDisplayed());
     }
 
+    /**
+     * Filling fields without first name on the checkout page test.
+     */
     @Test
     public void fillingFieldsWithoutFirstNameOnTheCheckoutPageTest() {
         loginPage
@@ -34,6 +43,9 @@ public class CheckoutTests extends BaseTest {
         Assert.assertEquals(checkoutPage.getErrorMessageText(), "Error: First Name is required");
     }
 
+    /**
+     * Filling fields without last name on the checkout page test.
+     */
     @Test
     public void fillingFieldsWithoutLastNameOnTheCheckoutPageTest() {
         loginPage
@@ -47,6 +59,9 @@ public class CheckoutTests extends BaseTest {
         Assert.assertEquals(checkoutPage.getErrorMessageText(), "Error: Last Name is required");
     }
 
+    /**
+     * Filling fields without zip code on the checkout page test.
+     */
     @Test
     public void fillingFieldsWithoutZipCodeOnTheCheckoutPageTest() {
         loginPage
@@ -60,6 +75,9 @@ public class CheckoutTests extends BaseTest {
         Assert.assertEquals(checkoutPage.getErrorMessageText(), "Error: Postal Code is required");
     }
 
+    /**
+     * Filling all fields where firstname with space on the checkout page test.
+     */
     @Test
     public void fillingAllFieldsWhereFirstnameWithSpaceOnTheCheckoutPageTest() {
         loginPage

@@ -3,6 +3,9 @@ package tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+/**
+ * The type Login tests.
+ */
 public class LoginTests extends BaseTest implements ITestConstants {
 
     private static final String EMPTY_PASSWORD_ERROR_TEXT = "Epic sadface: Password is required";
@@ -10,6 +13,9 @@ public class LoginTests extends BaseTest implements ITestConstants {
     private static final String EMPTY_USER_NAME_ERROR_TEXT_ERROR = "Epic sadface:  is required";
     private static final String INCORRECT_DATA_ERROR_TEXT = "Epic sadface: Username and password do not match any user in this service";
 
+    /**
+     * Login with empty fields test.
+     */
     @Test
     public void loginWithEmptyFieldsTest() {
         loginPage
@@ -25,6 +31,9 @@ public class LoginTests extends BaseTest implements ITestConstants {
     //     Assert.assertEquals(loginPage.getErrorMessageText(), EMPTY_USER_NAME_ERROR_TEXT_ERROR);
     // }
 
+    /**
+     * Login with empty user name fields test.
+     */
     @Test
     public void loginWithEmptyUserNameFieldsTest() {
         loginPage
@@ -33,6 +42,9 @@ public class LoginTests extends BaseTest implements ITestConstants {
         Assert.assertEquals(loginPage.getErrorMessageText(), EMPTY_USER_NAME_ERROR_TEXT);
     }
 
+    /**
+     * Login with empty password field test.
+     */
     @Test
     public void loginWithEmptyPasswordFieldTest() {
         loginPage
@@ -41,6 +53,9 @@ public class LoginTests extends BaseTest implements ITestConstants {
         Assert.assertEquals(loginPage.getErrorMessageText(), EMPTY_PASSWORD_ERROR_TEXT);
     }
 
+    /**
+     * Login with incorrect data test.
+     */
     @Test
     public void loginWithIncorrectDataTest() {
         loginPage
@@ -49,6 +64,9 @@ public class LoginTests extends BaseTest implements ITestConstants {
         Assert.assertEquals(loginPage.getErrorMessageText(), INCORRECT_DATA_ERROR_TEXT);
     }
 
+    /**
+     * Login with correct data test.
+     */
     @Test
     public void loginWithCorrectDataTest() {
         loginPage

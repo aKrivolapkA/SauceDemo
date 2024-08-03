@@ -13,15 +13,36 @@ import pages.*;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * The type Base test.
+ */
 @Listeners(TestListener.class)
 // анатоция чтобы в терменале было видно/ можно писать свое и менять/ нужно заимпортиовать ITestListener
 
 public class BaseTest {
+    /**
+     * The Driver.
+     */
     WebDriver driver;
+    /**
+     * The Login page.
+     */
     LoginPage loginPage;
+    /**
+     * The Products page.
+     */
     ProductsPage productsPage;
+    /**
+     * The Cart page.
+     */
     CartPage cartPage;
+    /**
+     * The Checkout page.
+     */
     CheckoutPage checkoutPage;
+    /**
+     * The Checkout overview page.
+     */
     CheckoutOverviewPage checkoutOverviewPage;
 
     /**

@@ -12,18 +12,33 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+/**
+ * The type Homework test.
+ */
 public class HomeworkTest {
 
     private WebDriver driver;
+    /**
+     * The Username input.
+     */
     @FindBy(xpath = "//*[@id='user-name']")
     WebElement usernameInput;
+    /**
+     * The Password input.
+     */
     @FindBy(xpath = "//*[@id='password']")
     WebElement passwordInput;
 
+    /**
+     * The Login button.
+     */
     @FindBy(xpath = "//*[@id='login-button']")
     WebElement loginButton;
 
 
+    /**
+     * Sets up.
+     */
     @BeforeMethod
     public void setUp() {
         WebDriverManager.chromedriver().setup();
@@ -35,6 +50,9 @@ public class HomeworkTest {
         PageFactory.initElements(driver, this);
     }
 
+    /**
+     * Login steps.
+     */
     @Test
     public void loginSteps() {
         usernameInput.sendKeys("standard_user");
