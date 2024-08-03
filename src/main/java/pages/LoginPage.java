@@ -3,8 +3,6 @@ package pages;
 import com.google.common.annotations.VisibleForTesting;
 import constans.IConstans;
 import jdk.jfr.Description;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,12 +12,6 @@ import java.time.Duration;
 
 
 public class LoginPage extends BasePage implements IConstans {
-
-    //public static final By USERNAME_INPUT = By.xpath("//*[@id='user-name']");
-    //public static final By PASSWORD_INPUT = By.xpath("//*[@id='password']");
-    //public static final By LOGIN_BUTTON = By.xpath("//*[@id='login-button']");
-    //public static final By ERROR_MESSAGE = By.xpath("//*[@data-test='error']");
-
     @FindBy(xpath = "//*[@id='user-name']")
     WebElement usernameInput;
     @FindBy(xpath = "//*[@id='password']")
@@ -30,7 +22,6 @@ public class LoginPage extends BasePage implements IConstans {
 
     @FindBy(xpath = "//*[@data-test='error']")
     WebElement errorMessage;
-
 
     public LoginPage(WebDriver driver) {
         super(driver);

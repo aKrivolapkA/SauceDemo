@@ -17,13 +17,13 @@ public class LoginTests extends BaseTest implements ITestConstants {
                 .login("", "");
         Assert.assertEquals(loginPage.getErrorMessageText(), EMPTY_USER_NAME_ERROR_TEXT);
     }
-   // @Test(retryAnalyzer = Retry.class)
-   // public void loginWithEmptyFieldsTestWithRetry() {
-   //     loginPage
-   //             .openPage()
-   //             .login("", "");
-   //     Assert.assertEquals(loginPage.getErrorMessageText(), EMPTY_USER_NAME_ERROR_TEXT_ERROR);
-   // }
+    // @Test(retryAnalyzer = Retry.class)
+    // public void loginWithEmptyFieldsTestWithRetry() {
+    //     loginPage
+    //             .openPage()
+    //             .login("", "");
+    //     Assert.assertEquals(loginPage.getErrorMessageText(), EMPTY_USER_NAME_ERROR_TEXT_ERROR);
+    // }
 
     @Test
     public void loginWithEmptyUserNameFieldsTest() {
