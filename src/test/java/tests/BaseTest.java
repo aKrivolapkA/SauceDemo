@@ -1,11 +1,12 @@
 package tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import listeners.TestListener;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.ITestListener;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
@@ -34,9 +35,15 @@ public class BaseTest {
     @BeforeMethod
     public void initTest() {
         WebDriverManager.chromedriver().setup();//скачиваем хромдрайвер и сеттаем его в системные настройки
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--disable-search-engine-choice-screen");
-        driver = new ChromeDriver(options);//инициализируем обьект веб драйвера
+       // ChromeOptions options = new ChromeOptions();
+       // options.addArguments("--disable-search-engine-choice-screen");
+        // запуск mvn -Dtest=LoginTests#loginTestWithSystemParameters -Dusername=standard_user -Dpassword=secret_sauce -Dbrowser=firefox test
+        if (System.getProperty("browser").equals("chrome")) {
+            driver = new ChromeDriver();//инициализируем объект вебдрайвера
+        } else if(System.getProperty("browser").equals("firefox")) {
+            driver = new FirefoxDriver();//инициализируем объект вебдрайвера
+        }
+        //driver = new ChromeDriver(options);//инициализируем обьект веб драйвера
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         initPages();

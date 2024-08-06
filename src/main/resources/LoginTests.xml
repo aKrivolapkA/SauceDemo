@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="SauceDemo Test Suite" parallel="tests" thread-count="2">
+    <test name="Login Tests" >
+        <classes>
+            <class name="tests.LoginTests" >
+               <parameter name="username" value="ParametrFromSuits"></parameter>
+                <parameter name="password" value="ParametrFromSuits"></parameter>
+                <methods>
+                    <exclude name="loginWithEmptyFieldsTest"></exclude>
+                    <exclude name="loginWithEmptyUserNameFieldsTest"></exclude>
+                    <exclude name="loginWithEmptyPasswordFieldTest"></exclude>
+                    <exclude name="loginWithIncorrectDataTest"></exclude>
+                    <exclude name="loginWithCorrectDataTest"></exclude>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

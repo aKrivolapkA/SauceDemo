@@ -12,27 +12,45 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <selenium-java.vesrion>4.22.0</selenium-java.vesrion>
+        <testng.version>7.10.2</testng.version>
+        <webdrivermanager.version>5.9.1</webdrivermanager.version>
+        <suiteXmlFile>sourcedemoCartTests.xml</suiteXmlFile>
     </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M4</version>
+                <configuration> <suiteXmlFiles>
+                    <suiteXmlFile>src/test/resources/${suiteXmlFile}</suiteXmlFile>
+                </suiteXmlFiles>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.22.0</version>
+            <version>${selenium-java.vesrion}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.testng/testng -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.10.2</version>
-            <scope>test</scope>
+            <version>${testng.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>5.9.1</version>
+            <version>${webdrivermanager.version}</version>
         </dependency>
     </dependencies>
 </project>
