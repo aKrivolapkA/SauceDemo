@@ -7,10 +7,14 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import pages.*;
+import steps.CartSteps;
+import steps.LoginSteps;
+import steps.ProductsSteps;
 
 import java.util.concurrent.TimeUnit;
 
@@ -29,25 +33,38 @@ public class BaseTest {
     CheckoutOverviewPage checkoutOverviewPage;
     HeaderPage headerPage;
 
+    LoginSteps loginSteps;
+    ProductsSteps productsSteps;
+    CartSteps cartSteps;
+
     /**
      * Init test.
      */
     @BeforeMethod
-    public void initTest() {
+    public void initTest(ITestContext iTestContext) {
         WebDriverManager.chromedriver().setup();//скачиваем хромдрайвер и сеттаем его в системные настройки
-       // ChromeOptions options = new ChromeOptions();
-       // options.addArguments("--disable-search-engine-choice-screen");
+        ChromeOptions options = new ChromeOptions();
+
+        //чтобы не открывался браузер
+       if(System.getProperty("headless","false").equals("true")){
+           options.addArguments("--headless=new");
+           driver= new ChromeDriver(options);
+       }else {
+           driver= new ChromeDriver();
+       }
+        options.addArguments("--disable-search-engine-choice-screen");
         // запуск mvn -Dtest=LoginTests#loginTestWithSystemParameters -Dusername=standard_user -Dpassword=secret_sauce -Dbrowser=firefox test
-        if (System.getProperty("browser").equals("chrome")) {
-            driver = new ChromeDriver();//инициализируем объект вебдрайвера
-        } else if(System.getProperty("browser").equals("firefox")) {
-            driver = new FirefoxDriver();//инициализируем объект вебдрайвера
-        }
-        //driver = new ChromeDriver(options);//инициализируем обьект веб драйвера
+       // if (System.getProperty("browser").equals("chrome")) {
+       //     driver = new ChromeDriver();//инициализируем объект вебдрайвера
+       // } else if(System.getProperty("browser").equals("firefox")) {
+       //     driver = new FirefoxDriver();//инициализируем объект вебдрайвера
+       // }
+      //  driver = new ChromeDriver(options);//инициализируем обьект веб драйвера
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         initPages();
         PageFactory.initElements(driver, this);
+        iTestContext.setAttribute("driver",driver);
     }
 
     /**
@@ -60,8 +77,9 @@ public class BaseTest {
         checkoutPage = new CheckoutPage(driver);
         checkoutOverviewPage = new CheckoutOverviewPage(driver);
         headerPage = new HeaderPage(driver);
-
-
+        productsSteps = new ProductsSteps(driver);
+        cartSteps =  new CartSteps(driver);
+        loginSteps = new LoginSteps(driver);
     }
 
     /**

@@ -45,7 +45,7 @@ public class CartTests extends BaseTest {
          */
 //добавить товар в корзину и проверить что у него отображается верная цена
         @Test(alwaysRun = true, dataProvider = "products And Price data")
-        public void addProductToCartTest(String productName, String price) {
+        public void addProductToCartTestWithDataProvider(String productName, String price) {
             loginPage.openPage()
                     .login(USERNAME, PASSWORD)
                     .addProductToCart(productName);
@@ -99,4 +99,13 @@ public class CartTests extends BaseTest {
                     .removeProductFromCart(SAUCE_LABS_BACKPACK);
             Assert.assertEquals(cartPage.getProductsCount(), 1);
         }
+
+    @Test
+    public void addProductToCartTestWithError() {
+        loginPage.openPage()
+                .login(USERNAME, PASSWORD)
+                .addProductToCart(SAUCE_LABS_BACKPACK);
+        cartPage.openPage();
+        Assert.assertEquals(cartPage.getProductPrice(SAUCE_LABS_BACKPACK), "123");
+    }
     }

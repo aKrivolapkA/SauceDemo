@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import utils.PropertyReader;
 
 /**
  * The type Login tests.
@@ -20,9 +21,7 @@ public class LoginTests extends BaseTest implements ITestConstants {
      */
     @Test
     public void loginWithEmptyFieldsTest() {
-        loginPage
-                .openPage()
-                .login("", "");
+        loginSteps.loginAndWaitForPageOpened("", "");
         Assert.assertEquals(loginPage.getErrorMessageText(), EMPTY_USER_NAME_ERROR_TEXT);
     }
     // @Test(retryAnalyzer = Retry.class)
@@ -38,9 +37,7 @@ public class LoginTests extends BaseTest implements ITestConstants {
      */
     @Test
     public void loginWithEmptyUserNameFieldsTest() {
-        loginPage
-                .openPage()
-                .login("", PASSWORD);
+        loginSteps.loginAndWaitForPageOpened("", PASSWORD);
         Assert.assertEquals(loginPage.getErrorMessageText(), EMPTY_USER_NAME_ERROR_TEXT);
     }
 
@@ -49,9 +46,7 @@ public class LoginTests extends BaseTest implements ITestConstants {
      */
     @Test
     public void loginWithEmptyPasswordFieldTest() {
-        loginPage
-                .openPage()
-                .login(USERNAME, "");
+        loginSteps.loginAndWaitForPageOpened(USERNAME,"");
         Assert.assertEquals(loginPage.getErrorMessageText(), EMPTY_PASSWORD_ERROR_TEXT);
     }
 
@@ -60,9 +55,7 @@ public class LoginTests extends BaseTest implements ITestConstants {
      */
     @Test
     public void loginWithIncorrectDataTest() {
-        loginPage
-                .openPage()
-                .login("dddd", "ssss");
+        loginSteps.loginAndWaitForPageOpened("ddd","ssss");
         Assert.assertEquals(loginPage.getErrorMessageText(), INCORRECT_DATA_ERROR_TEXT);
     }
 
@@ -71,10 +64,7 @@ public class LoginTests extends BaseTest implements ITestConstants {
      */
     @Test
     public void loginWithCorrectDataTest() {
-        loginPage
-                .openPage()
-                .waitForPageOpened()
-                .login(USERNAME, PASSWORD);
+        loginSteps.loginAndWaitForPageOpened(USERNAME,PASSWORD);
         driver.getCurrentUrl();
         Assert.assertEquals(productsPage.getProductText(), "Products");
     }
@@ -82,20 +72,22 @@ public class LoginTests extends BaseTest implements ITestConstants {
     @Test
     @Parameters ({"username","password"}) // данные передаем в LoginTests.xml
     public void loginWithParametersTest(@Optional("optionalUserName") String username, @Optional("optionalPassword")String password) { //Optional  если не будет переданно в LoginTests.xml
-        loginPage
-                .openPage()
-                .login(username, password);
+        loginSteps.loginAndWaitForPageOpened(username, password);
         Assert.assertEquals(loginPage.getErrorMessageText(), INCORRECT_DATA_ERROR_TEXT);
     }
 
     @Test
     public void loginTestWithSystemParameters() { //чтобы запустить % mvn -Dtest=LoginTest #loginTestWithSystemParameters -Dusername=standard_user -Dpassword=secret_sauce test
+        loginSteps.loginAndWaitForPageOpened(System.getProperty("username","123"),System.getProperty("password","123"));
+        driver.getCurrentUrl();
+        Assert.assertEquals(productsPage.getProductText(), "Products");
+    }
 
-
-        loginPage
-                .openPage()
-                .waitForPageOpened()
-                .login(System.getProperty("username","123"),System.getProperty("password","123"));
+    @Test
+    public void loginTestWithConfigParameters() {
+        loginSteps.loginAndWaitForPageOpened(
+                System.getProperty("username", PropertyReader.getProperty("username")),
+                System.getProperty("password", PropertyReader.getProperty("password")));
         driver.getCurrentUrl();
         Assert.assertEquals(productsPage.getProductText(), "Products");
     }
